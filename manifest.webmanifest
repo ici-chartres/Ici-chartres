@@ -1,0 +1,32 @@
+{
+  "id": "./app.html",
+  "name": "ICI CHARTRES",
+  "short_name": "ICI CHARTRES",
+  "description": "Tout ce qui se passe ici, à Chartres et aux alentours.",
+  "lang": "fr-FR",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF9",
+  "theme_color": "#0E5F55",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
