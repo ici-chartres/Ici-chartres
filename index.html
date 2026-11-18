@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -7,174 +8,792 @@
   <meta name="description" content="ICI CHARTRES : les bonnes adresses, les sorties, les événements et les idées près de chez vous, à Chartres et aux alentours.">
   <meta property="og:title" content="ICI CHARTRES — Tout ce qui se passe ici">
   <meta property="og:description" content="Les bonnes adresses, les sorties et les événements près de chez vous.">
+
   <title>ICI CHARTRES — Tout ce qui se passe ici</title>
+
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icons/icon-192.png">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/icon-512.png.png">
+  <link rel="apple-touch-icon" href="icons/icon-512.png.png">
+
   <style>
-    :root{--green:#0E5F55;--green-dark:#0A4A42;--mint:#E3F0EC;--orange:#E8552E;--cream:#FFFDF9;--ink:#1F2A24;--muted:#6B6459;--line:#EAE4D8;--gold:#F2A93B}
+    :root{
+      --green:#0E5F55;
+      --green-dark:#0A4A42;
+      --mint:#E3F0EC;
+      --orange:#E8552E;
+      --cream:#FFFDF9;
+      --ink:#1F2A24;
+      --muted:#6B6459;
+      --line:#EAE4D8;
+      --gold:#F2A93B
+    }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--cream);color:var(--ink);font-family:Manrope,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--ink);
+      font-family:Manrope,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+    }
+
     a{color:inherit;text-decoration:none}
-    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
-    header{height:78px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.02em;color:var(--green)}
-    .brand-mark{width:42px;height:42px;border-radius:14px;background:var(--green);display:grid;place-items:center;color:#fff;font-family:Georgia,serif;font-size:22px;box-shadow:0 7px 18px #0e5f5526}
-    .brand small{display:block;font-size:10px;letter-spacing:.13em;color:var(--muted);font-weight:700;margin-top:2px}
-    .nav{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--muted);font-weight:650}
+
+    .wrap{
+      width:min(1120px,calc(100% - 40px));
+      margin:auto
+    }
+
+    header{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      font-weight:850;
+      letter-spacing:.02em;
+      color:var(--green)
+    }
+
+    /* NOUVEAU LOGO */
+    .brand-logo{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+      border-radius:10px;
+      display:block;
+      flex:none
+    }
+
+    .brand small{
+      display:block;
+      font-size:10px;
+      letter-spacing:.13em;
+      color:var(--muted);
+      font-weight:700;
+      margin-top:2px
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:650
+    }
+
     .nav a:hover{color:var(--green)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:999px;font-weight:800;font-size:14px;border:1px solid transparent;transition:.2s;cursor:pointer}
-    .btn-primary{background:var(--green);color:#fff;box-shadow:0 9px 22px #0e5f5528}
-    .btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
-    .btn-light{background:#fff;border-color:var(--line);color:var(--green)}
-    .hero{position:relative;isolation:isolate;overflow:hidden;min-height:620px;padding:58px 0 74px;display:block}
-    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,253,249,.93) 0%,rgba(255,253,249,.82) 39%,rgba(255,253,249,.22) 100%),url("images/cathedrale-chartres.jpg") center 48%/cover no-repeat}
-    .hero-inner{width:min(1120px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:58px;min-height:488px}
-    .hero-copy{position:relative;z-index:1}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:var(--mint);padding:8px 13px;color:var(--green);font-size:12px;font-weight:850;letter-spacing:.04em}
-    .dot{width:7px;height:7px;background:var(--orange);border-radius:50%}
-    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,6vw,72px);line-height:.99;letter-spacing:-.045em;margin:22px 0 20px;color:var(--green);font-weight:700}
-    h1 em{color:var(--orange);font-style:normal}
-    .lead{font-size:18px;line-height:1.7;color:var(--muted);max-width:570px}
-    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-    .local-note{display:flex;align-items:center;gap:9px;margin-top:24px;color:var(--muted);font-size:13px}
-    .local-note svg{color:var(--orange);flex:none}
-    .visual{position:relative;min-height:560px;display:grid;place-items:center;isolation:isolate}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:14px;
+      border:1px solid transparent;
+      transition:.2s;
+      cursor:pointer
+    }
+
+    .btn-primary{
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 9px 22px #0e5f5528
+    }
+
+    .btn-primary:hover{
+      background:var(--green-dark);
+      transform:translateY(-1px)
+    }
+
+    .btn-light{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--green)
+    }
+
+    .hero{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      min-height:620px;
+      padding:58px 0 74px;
+      display:block
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(90deg,rgba(255,253,249,.93) 0%,rgba(255,253,249,.82) 39%,rgba(255,253,249,.22) 100%),url("images/cathedrale-chartres.jpg") center 48%/cover no-repeat
+    }
+
+    .hero-inner{
+      width:min(1120px,calc(100% - 40px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      align-items:center;
+      gap:58px;
+      min-height:488px
+    }
+
+    .hero-copy{
+      position:relative;
+      z-index:1
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border-radius:999px;
+      background:var(--mint);
+      padding:8px 13px;
+      color:var(--green);
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.04em
+    }
+
+    .dot{
+      width:7px;
+      height:7px;
+      background:var(--orange);
+      border-radius:50%
+    }
+
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(46px,6vw,72px);
+      line-height:.99;
+      letter-spacing:-.045em;
+      margin:22px 0 20px;
+      color:var(--green);
+      font-weight:700
+    }
+
+    h1 em{
+      color:var(--orange);
+      font-style:normal
+    }
+
+    .lead{
+      font-size:18px;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:570px
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:30px
+    }
+
+    .local-note{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      margin-top:24px;
+      color:var(--muted);
+      font-size:13px
+    }
+
+    .local-note svg{
+      color:var(--orange);
+      flex:none
+    }
+
+    .visual{
+      position:relative;
+      min-height:560px;
+      display:grid;
+      place-items:center;
+      isolation:isolate
+    }
+
     .visual::before{content:none}
     .blob{display:none}
-    .phone{position:relative;z-index:1;margin-left:-78px;width:252px;height:450px;background:#fff;border:8px solid #1e2924;border-radius:36px;box-shadow:0 25px 65px #263d3430;overflow:hidden;transform:rotate(5deg)}
-    .phone-top{height:25px;background:#fff;display:flex;justify-content:center;align-items:center}
-    .notch{width:72px;height:13px;border-radius:0 0 10px 10px;background:#1e2924}
-    .phone-screen{padding:15px 13px;background:#fffdf9;height:calc(100% - 25px)}
-    .mini-brand{font-family:Georgia,serif;color:var(--green);font-size:18px;font-weight:bold}
-    .mini-sub{font-size:8px;color:#81796d;margin-top:2px}
-    .mini-greeting{font-family:Georgia,serif;font-size:21px;line-height:1.1;margin:22px 0 12px}
-    .mini-greeting span{color:var(--orange)}
-    .mini-search{height:31px;border-radius:10px;background:#f1eee7;color:#948d82;font-size:9px;padding:10px;margin-bottom:15px}
-    .mini-pills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
-    .mini-pills span{font-size:8px;padding:6px 8px;background:#e7f1ed;color:var(--green);border-radius:20px;font-weight:bold}
-    .mini-section{font-size:11px;font-weight:850;margin:14px 0 8px}
-    .mini-card{display:flex;gap:9px;padding:8px;border:1px solid #eee8dd;border-radius:12px;margin-bottom:8px}
-    .mini-thumb{width:54px;height:48px;border-radius:8px;background:linear-gradient(135deg,#d9b58c,#8ba58c);flex:none}
-    .mini-thumb.two{background:linear-gradient(135deg,#f1c58b,#c56c4f)}
-    .mini-card b{font-size:9px;display:block;margin:3px 0}
-    .mini-card small{font-size:7px;color:#82796d}
-    .float-tag{position:absolute;z-index:2;background:#fff;padding:12px 15px;border-radius:15px;box-shadow:0 10px 30px #263d3420;font-size:12px;font-weight:800;color:var(--green)}
-    .float-tag.one{top:74px;right:0;transform:rotate(4deg)}
-    .float-tag.two{bottom:62px;left:0;transform:rotate(-5deg);color:var(--orange)}
-    .section{padding:72px 0;border-top:1px solid var(--line)}
-    .section-head{text-align:center;max-width:650px;margin:0 auto 36px}
-    .section-head h2{font-family:Georgia,serif;font-size:clamp(32px,4vw,44px);color:var(--green);margin:0 0 12px;letter-spacing:-.03em}
-    .section-head p{color:var(--muted);line-height:1.7}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .feature{padding:25px;border:1px solid var(--line);border-radius:20px;background:#fff}
-    .feature-icon{width:44px;height:44px;border-radius:14px;background:var(--mint);display:grid;place-items:center;font-size:21px;margin-bottom:17px}
-    .feature h3{font-size:17px;margin:0 0 8px}
-    .feature p{font-size:14px;line-height:1.65;color:var(--muted)}
-    .install{background:var(--green);color:#fff;border-radius:26px;padding:38px 42px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .install h2{font-family:Georgia,serif;font-size:clamp(28px,4vw,38px);margin:0 0 9px}
-    .install p{color:#d7e7e1;line-height:1.6;max-width:590px}
-    .install .btn{background:#fff;color:var(--green);white-space:nowrap}
-    footer{padding:34px 0 42px;color:var(--muted);font-size:12px}
-    .foot-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
-    .foot-links{display:flex;gap:18px;flex-wrap:wrap}
-    .foot-links a:hover{color:var(--green)}
-    .install-help{display:none;margin-top:15px;padding:14px 16px;border-radius:14px;background:#fff7e9;color:#574a35;font-size:13px;line-height:1.6}
-    .install-help.show{display:block}
-    @media(max-width:760px){
-      .wrap{width:min(100% - 32px,560px)}header{height:70px}.nav{gap:12px}.nav .nav-about{display:none}.nav .btn{padding:11px 14px;font-size:12px}
-      .hero{min-height:0;padding:42px 0 48px}.hero::before{background:linear-gradient(180deg,rgba(255,253,249,.91) 0%,rgba(255,253,249,.72) 48%,rgba(255,253,249,.28) 100%),url("images/cathedrale-chartres.jpg") center/cover no-repeat}.hero-inner{width:min(100% - 32px,560px);grid-template-columns:1fr;gap:20px;min-height:0}.hero-copy{text-align:center}.lead{font-size:16px;margin:auto}.actions{justify-content:center}.local-note{justify-content:center}.visual{min-height:460px}.phone{margin-left:0;transform:rotate(3deg) scale(.9)}.float-tag.one{right:2%}.float-tag.two{left:1%}
-      .section{padding:52px 0}.features{grid-template-columns:1fr}.feature{padding:21px}.install{padding:28px 23px;display:block;text-align:center}.install .btn{margin-top:20px}.foot-inner{align-items:flex-start;flex-direction:column}
+
+    .phone{
+      position:relative;
+      z-index:1;
+      margin-left:-78px;
+      width:252px;
+      height:450px;
+      background:#fff;
+      border:8px solid #1e2924;
+      border-radius:36px;
+      box-shadow:0 25px 65px #263d3430;
+      overflow:hidden;
+      transform:rotate(5deg)
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+    .phone-top{
+      height:25px;
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center
+    }
+
+    .notch{
+      width:72px;
+      height:13px;
+      border-radius:0 0 10px 10px;
+      background:#1e2924
+    }
+
+    .phone-screen{
+      padding:15px 13px;
+      background:#fffdf9;
+      height:calc(100% - 25px)
+    }
+
+    .mini-brand{
+      font-family:Georgia,serif;
+      color:var(--green);
+      font-size:18px;
+      font-weight:bold
+    }
+
+    .mini-sub{
+      font-size:8px;
+      color:#81796d;
+      margin-top:2px
+    }
+
+    .mini-greeting{
+      font-family:Georgia,serif;
+      font-size:21px;
+      line-height:1.1;
+      margin:22px 0 12px
+    }
+
+    .mini-greeting span{color:var(--orange)}
+
+    .mini-search{
+      height:31px;
+      border-radius:10px;
+      background:#f1eee7;
+      color:#948d82;
+      font-size:9px;
+      padding:10px;
+      margin-bottom:15px
+    }
+
+    .mini-pills{
+      display:flex;
+      gap:5px;
+      flex-wrap:wrap;
+      margin-bottom:16px
+    }
+
+    .mini-pills span{
+      font-size:8px;
+      padding:6px 8px;
+      background:#e7f1ed;
+      color:var(--green);
+      border-radius:20px;
+      font-weight:bold
+    }
+
+    .mini-section{
+      font-size:11px;
+      font-weight:850;
+      margin:14px 0 8px
+    }
+
+    .mini-card{
+      display:flex;
+      gap:9px;
+      padding:8px;
+      border:1px solid #eee8dd;
+      border-radius:12px;
+      margin-bottom:8px
+    }
+
+    .mini-thumb{
+      width:54px;
+      height:48px;
+      border-radius:8px;
+      background:linear-gradient(135deg,#d9b58c,#8ba58c);
+      flex:none
+    }
+
+    .mini-thumb.two{
+      background:linear-gradient(135deg,#f1c58b,#c56c4f)
+    }
+
+    .mini-card b{
+      font-size:9px;
+      display:block;
+      margin:3px 0
+    }
+
+    .mini-card small{
+      font-size:7px;
+      color:#82796d
+    }
+
+    .float-tag{
+      position:absolute;
+      z-index:2;
+      background:#fff;
+      padding:12px 15px;
+      border-radius:15px;
+      box-shadow:0 10px 30px #263d3420;
+      font-size:12px;
+      font-weight:800;
+      color:var(--green)
+    }
+
+    .float-tag.one{
+      top:74px;
+      right:0;
+      transform:rotate(4deg)
+    }
+
+    .float-tag.two{
+      bottom:62px;
+      left:0;
+      transform:rotate(-5deg);
+      color:var(--orange)
+    }
+
+    .section{
+      padding:72px 0;
+      border-top:1px solid var(--line)
+    }
+
+    .section-head{
+      text-align:center;
+      max-width:650px;
+      margin:0 auto 36px
+    }
+
+    .section-head h2{
+      font-family:Georgia,serif;
+      font-size:clamp(32px,4vw,44px);
+      color:var(--green);
+      margin:0 0 12px;
+      letter-spacing:-.03em
+    }
+
+    .section-head p{
+      color:var(--muted);
+      line-height:1.7
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px
+    }
+
+    .feature{
+      padding:25px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff
+    }
+
+    .feature-icon{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:var(--mint);
+      display:grid;
+      place-items:center;
+      font-size:21px;
+      margin-bottom:17px
+    }
+
+    .feature h3{
+      font-size:17px;
+      margin:0 0 8px
+    }
+
+    .feature p{
+      font-size:14px;
+      line-height:1.65;
+      color:var(--muted)
+    }
+
+    .install{
+      background:var(--green);
+      color:#fff;
+      border-radius:26px;
+      padding:38px 42px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px
+    }
+
+    .install h2{
+      font-family:Georgia,serif;
+      font-size:clamp(28px,4vw,38px);
+      margin:0 0 9px
+    }
+
+    .install p{
+      color:#d7e7e1;
+      line-height:1.6;
+      max-width:590px
+    }
+
+    .install .btn{
+      background:#fff;
+      color:var(--green);
+      white-space:nowrap
+    }
+
+    footer{
+      padding:34px 0 42px;
+      color:var(--muted);
+      font-size:12px
+    }
+
+    .foot-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center
+    }
+
+    .foot-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap
+    }
+
+    .foot-links a:hover{color:var(--green)}
+
+    .install-help{
+      display:none;
+      margin-top:15px;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#fff7e9;
+      color:#574a35;
+      font-size:13px;
+      line-height:1.6
+    }
+
+    .install-help.show{display:block}
+
+    @media(max-width:760px){
+      .wrap{
+        width:min(100% - 32px,560px)
+      }
+
+      header{height:70px}
+
+      .nav{gap:12px}
+
+      .nav .nav-about{display:none}
+
+      .nav .btn{
+        padding:11px 14px;
+        font-size:12px
+      }
+
+      .hero{
+        min-height:0;
+        padding:42px 0 48px
+      }
+
+      .hero::before{
+        background:linear-gradient(180deg,rgba(255,253,249,.91) 0%,rgba(255,253,249,.72) 48%,rgba(255,253,249,.28) 100%),url("images/cathedrale-chartres.jpg") center/cover no-repeat
+      }
+
+      .hero-inner{
+        width:min(100% - 32px,560px);
+        grid-template-columns:1fr;
+        gap:20px;
+        min-height:0
+      }
+
+      .hero-copy{text-align:center}
+
+      .lead{
+        font-size:16px;
+        margin:auto
+      }
+
+      .actions{justify-content:center}
+
+      .local-note{justify-content:center}
+
+      .visual{min-height:460px}
+
+      .phone{
+        margin-left:0;
+        transform:rotate(3deg) scale(.9)
+      }
+
+      .float-tag.one{right:2%}
+      .float-tag.two{left:1%}
+
+      .section{padding:52px 0}
+
+      .features{grid-template-columns:1fr}
+
+      .feature{padding:21px}
+
+      .install{
+        padding:28px 23px;
+        display:block;
+        text-align:center
+      }
+
+      .install .btn{margin-top:20px}
+
+      .foot-inner{
+        align-items:flex-start;
+        flex-direction:column
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition:none!important}
+    }
   </style>
 </head>
+
 <body>
+
   <header class="wrap">
     <a class="brand" href="./" aria-label="ICI CHARTRES, accueil">
-      <span class="brand-mark">ici</span>
-      <span>ICI CHARTRES<small>TOUT CE QUI SE PASSE ICI</small></span>
+
+      <img
+        src="icons/icon-512.png.png"
+        alt="Logo ICI CHARTRES"
+        class="brand-logo"
+      >
+
+      <span>
+        ICI CHARTRES
+        <small>TOUT CE QUI SE PASSE ICI</small>
+      </span>
+
     </a>
+
     <nav class="nav" aria-label="Navigation principale">
       <a class="nav-about" href="#decouvrir">Découvrir</a>
       <a class="nav-about" href="#installer">Installer</a>
-      <a class="btn btn-primary" href="app.html">Ouvrir l’application <span aria-hidden="true">↗</span></a>
+
+      <a class="btn btn-primary" href="app.html">
+        Ouvrir l’application <span aria-hidden="true">↗</span>
+      </a>
     </nav>
   </header>
 
   <main>
+
     <section class="hero">
       <div class="hero-inner">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="dot"></span> CHARTRES ET SES ALENTOURS</span>
-        <h1>Tout ce qui se passe <em>ici.</em></h1>
-        <p class="lead">Les bonnes adresses, les sorties, les événements et les idées du coin. Retrouvez ce qui fait vivre Chartres et ses alentours, au même endroit.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="app.html">Découvrir l’application <span aria-hidden="true">→</span></a>
-          <button class="btn btn-light" id="installBtn" type="button">Installer sur mon téléphone</button>
-        </div>
-        <div class="local-note">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Une initiative locale, pensée pour la vie près de chez vous.
-        </div>
-        <div class="install-help" id="installHelp" role="status"></div>
-      </div>
-      <div class="visual" aria-label="Aperçu de l’application ICI CHARTRES">
-        <div class="blob"></div>
-        <div class="phone">
-          <div class="phone-top"><div class="notch"></div></div>
-          <div class="phone-screen">
-            <div class="mini-brand">ICI CHARTRES</div><div class="mini-sub">TOUT CE QUI SE PASSE ICI</div>
-            <div class="mini-greeting">Bonjour,<br><span>Chartres !</span></div>
-            <div class="mini-search">⌕ &nbsp; Un lieu, une sortie, une envie…</div>
-            <div class="mini-pills"><span>À découvrir</span><span>Sortir</span><span>Autour de moi</span></div>
-            <div class="mini-section">À découvrir près de vous</div>
-            <div class="mini-card"><div class="mini-thumb"></div><div><b>Les bonnes adresses</b><small>Des lieux à explorer</small></div></div>
-            <div class="mini-card"><div class="mini-thumb two"></div><div><b>Les idées de sortie</b><small>Les rendez-vous du coin</small></div></div>
-            <div class="mini-section">Cette semaine</div>
-            <div class="mini-card"><div class="mini-thumb two"></div><div><b>Les événements</b><small>À ne pas manquer</small></div></div>
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">
+            <span class="dot"></span>
+            CHARTRES ET SES ALENTOURS
+          </span>
+
+          <h1>Tout ce qui se passe <em>ici.</em></h1>
+
+          <p class="lead">
+            Les bonnes adresses, les sorties, les événements et les idées du coin.
+            Retrouvez ce qui fait vivre Chartres et ses alentours, au même endroit.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="app.html">
+              Découvrir l’application <span aria-hidden="true">→</span>
+            </a>
+
+            <button class="btn btn-light" id="installBtn" type="button">
+              Installer sur mon téléphone
+            </button>
           </div>
+
+          <div class="local-note">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
+
+            Une initiative locale, pensée pour la vie près de chez vous.
+          </div>
+
+          <div class="install-help" id="installHelp" role="status"></div>
+
         </div>
-        <div class="float-tag one">📍 Près de chez vous</div>
-        <div class="float-tag two">♥ Vos favoris, toujours à portée</div>
-      </div>
+
+        <div class="visual" aria-label="Aperçu de l’application ICI CHARTRES">
+
+          <div class="blob"></div>
+
+          <div class="phone">
+
+            <div class="phone-top">
+              <div class="notch"></div>
+            </div>
+
+            <div class="phone-screen">
+
+              <div class="mini-brand">ICI CHARTRES</div>
+              <div class="mini-sub">TOUT CE QUI SE PASSE ICI</div>
+
+              <div class="mini-greeting">
+                Bonjour,<br>
+                <span>Chartres !</span>
+              </div>
+
+              <div class="mini-search">
+                ⌕ &nbsp; Un lieu, une sortie, une envie…
+              </div>
+
+              <div class="mini-pills">
+                <span>À découvrir</span>
+                <span>Sortir</span>
+                <span>Autour de moi</span>
+              </div>
+
+              <div class="mini-section">À découvrir près de vous</div>
+
+              <div class="mini-card">
+                <div class="mini-thumb"></div>
+                <div>
+                  <b>Les bonnes adresses</b>
+                  <small>Des lieux à explorer</small>
+                </div>
+              </div>
+
+              <div class="mini-card">
+                <div class="mini-thumb two"></div>
+                <div>
+                  <b>Les idées de sortie</b>
+                  <small>Les rendez-vous du coin</small>
+                </div>
+              </div>
+
+              <div class="mini-section">Cette semaine</div>
+
+              <div class="mini-card">
+                <div class="mini-thumb two"></div>
+                <div>
+                  <b>Les événements</b>
+                  <small>À ne pas manquer</small>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="float-tag one">📍 Près de chez vous</div>
+          <div class="float-tag two">♥ Vos favoris, toujours à portée</div>
+
+        </div>
       </div>
     </section>
 
     <section class="section" id="decouvrir">
       <div class="wrap">
+
         <div class="section-head">
           <h2>La vie locale, plus facile à trouver.</h2>
-          <p>Un point de départ simple pour découvrir des lieux, trouver une idée de sortie et garder sous la main ce qui vous plaît.</p>
+
+          <p>
+            Un point de départ simple pour découvrir des lieux,
+            trouver une idée de sortie et garder sous la main ce qui vous plaît.
+          </p>
         </div>
+
         <div class="features">
-          <article class="feature"><div class="feature-icon">⌖</div><h3>Explorer autour de vous</h3><p>Parcourez les lieux et les bonnes adresses de Chartres et des environs.</p></article>
-          <article class="feature"><div class="feature-icon">✦</div><h3>Trouver une idée de sortie</h3><p>Consultez les événements et les rendez-vous à découvrir près de chez vous.</p></article>
-          <article class="feature"><div class="feature-icon">♡</div><h3>Garder vos favoris</h3><p>Enregistrez les lieux et événements que vous souhaitez retrouver facilement.</p></article>
+
+          <article class="feature">
+            <div class="feature-icon">⌖</div>
+            <h3>Explorer autour de vous</h3>
+            <p>Parcourez les lieux et les bonnes adresses de Chartres et des environs.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">✦</div>
+            <h3>Trouver une idée de sortie</h3>
+            <p>Consultez les événements et les rendez-vous à découvrir près de chez vous.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">♡</div>
+            <h3>Garder vos favoris</h3>
+            <p>Enregistrez les lieux et événements que vous souhaitez retrouver facilement.</p>
+          </article>
+
         </div>
       </div>
     </section>
 
     <section class="wrap" id="installer" style="padding-bottom:68px">
+
       <div class="install">
-        <div><h2>ICI CHARTRES dans votre poche.</h2><p>Ouvrez l’application depuis votre navigateur ou ajoutez-la à l’écran d’accueil de votre téléphone pour la retrouver plus facilement.</p></div>
-        <a class="btn" href="app.html">Ouvrir l’application →</a>
+
+        <div>
+          <h2>ICI CHARTRES dans votre poche.</h2>
+
+          <p>
+            Ouvrez l’application depuis votre navigateur ou ajoutez-la
+            à l’écran d’accueil de votre téléphone pour la retrouver plus facilement.
+          </p>
+        </div>
+
+        <a class="btn" href="app.html">
+          Ouvrir l’application →
+        </a>
+
       </div>
     </section>
+
   </main>
 
   <footer class="wrap">
+
     <div class="foot-inner">
-      <div>© <span id="year"></span> ICI CHARTRES · Tout ce qui se passe ici</div>
-      <div class="foot-links"><a href="app.html">L’application</a><a href="https://www.ici-chartres.fr/politique-confidentialite.html">Confidentialité</a></div>
+
+      <div>
+        © <span id="year"></span> ICI CHARTRES · Tout ce qui se passe ici
+      </div>
+
+      <div class="foot-links">
+        <a href="app.html">L’application</a>
+        <a href="https://www.ici-chartres.fr/politique-confidentialite.html">Confidentialité</a>
+      </div>
+
     </div>
   </footer>
 
   <script>
     let installPrompt = null;
+
     const installBtn = document.getElementById('installBtn');
     const installHelp = document.getElementById('installHelp');
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
     window.addEventListener('beforeinstallprompt', (event) => {
@@ -183,17 +802,22 @@
     });
 
     installBtn.addEventListener('click', async () => {
+
       if (installPrompt) {
         installPrompt.prompt();
         await installPrompt.userChoice;
         installPrompt = null;
         return;
       }
+
       const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
       installHelp.classList.add('show');
+
       installHelp.textContent = isIOS
         ? 'Sur iPhone ou iPad : ouvrez cette page dans Safari, touchez le bouton Partager, puis « Sur l’écran d’accueil ».'
         : 'Si l’installation n’est pas proposée automatiquement, ouvrez le menu de votre navigateur puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».';
+
     });
 
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
@@ -202,5 +826,6 @@
       });
     }
   </script>
+
 </body>
 </html>
