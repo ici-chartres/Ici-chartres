@@ -1,0 +1,25 @@
+# ICI CHARTRES — première version du site
+
+## Contenu
+- `index.html` : page d’accueil / présentation du site.
+- `app.html` : application existante, conservée à partir du fichier fourni.
+- `manifest.webmanifest` : déclaration d’installation PWA.
+- `sw.js` : cache de base pour les fichiers de l’application.
+- `icons/` : icônes d’installation.
+- `images/cathedrale-chartres.jpg` : visuel d’accueil de la cathédrale.
+
+## Mise en ligne
+Téléverser le contenu de ce dossier à la racine du site `ici-chartres.fr` (en conservant les noms et dossiers).
+Le site doit être servi en HTTPS pour permettre l’installation PWA et le service worker.
+
+## Android / Capacitor
+Le `webDir` du projet Capacitor est `www`. Copier le contenu de ce dossier dans `www`, puis exécuter :
+`npx cap sync android`
+
+## À vérifier avant lancement public
+- Les données des lieux et événements de `app.html` sont en partie intégrées directement dans le fichier : prévoir leur mise à jour.
+- Certains boutons affichent encore des messages de démonstration.
+- Vérifier et remplacer les éventuelles données de profil de démonstration.
+- Vérifier le contenu et l’adresse de la politique de confidentialité.
+- Tester l’installation sur un vrai téléphone Android et un iPhone.
+- Le service worker met en cache la coque du site ; les photos externes et les données nécessitant Internet ne sont pas garanties hors connexion.
