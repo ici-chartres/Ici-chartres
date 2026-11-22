@@ -1,13 +1,14 @@
-const CACHE_NAME = 'ici-chartres-shell-v1';
+const CACHE_NAME = 'ici-chartres-shell-v2';
 const APP_SHELL = [
   './',
   './index.html',
   './app.html',
   './manifest.webmanifest',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-  './images/cathedrale-chartres.jpg'
+  './icons/icon-192.png?v=2',
+  './icons/icon-512.png?v=2',
+  './icons/icon-maskable-512.png?v=2',
+  './images/cathedrale-chartres.jpg',
+  './images/logo-ici-pin.png'
 ];
 
 self.addEventListener('install', (event) => {
