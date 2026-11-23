@@ -3439,21 +3439,50 @@ thumbObserver.observe(document.getElementById('app'), { childList:true, subtree:
   const card = document.getElementById('update-card');
   const ok = document.getElementById('update-ok');
   if(!card || !ok) return;
-  let current = null;
+  let current = null;        // version affichée (mémorisée au clic sur « Compris »)
+  let shownFor = null;       // évite d'afficher deux fois la même version pendant la session
+  let awaitingVersion = false;
   function seen(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
   function remember(v){ try{ localStorage.setItem(KEY, v); }catch(e){} }
-  ok.addEventListener('click', ()=>{ if(current) remember(current); card.classList.remove('show'); });
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.addEventListener('message', (e)=>{
-      const d = e.data;
-      if(!d || d.type !== 'ICI_UPDATE_AVAILABLE') return;
-      const v = String(d.version || '');
-      if(v && seen() === v) return;            // déjà fermé pour cette version
-      current = v || null;
-      card.classList.add('show');
-    });
-    if(location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  function announce(v){
+    if(v && (seen() === v || shownFor === v)) return;   // déjà vu / déjà fermé pour cette version
+    current = v || null; shownFor = v || null;
+    card.classList.add('show');
   }
+  ok.addEventListener('click', ()=>{ if(current) remember(current); card.classList.remove('show'); });
+
+  if('serviceWorker' in navigator){
+    const sw = navigator.serviceWorker;
+    let hadController = !!sw.controller;
+    // Signal 1 : le nouveau service worker prévient la page quand il s'installe.
+    // Signal 2 : si ce message est manqué, la page le détecte quand le nouveau service worker prend le relais.
+    sw.addEventListener('message', (e)=>{
+      const d = e.data || {};
+      if(d.type === 'ICI_UPDATE_AVAILABLE') announce(String(d.version || ''));
+      else if(d.type === 'ICI_VERSION' && awaitingVersion){ awaitingVersion = false; announce(String(d.version || '')); }
+    });
+    sw.addEventListener('controllerchange', ()=>{
+      if(!hadController){ hadController = true; return; }   // toute première installation : rien à annoncer
+      if(sw.controller){ awaitingVersion = true; sw.controller.postMessage({ type:'ICI_GET_VERSION' }); }
+    });
+    if(location.protocol.startsWith('http')){
+      sw.register('./sw.js', { updateViaCache:'none' }).catch(()=>{});
+      // Sur iPhone, l'application installée est souvent simplement « réveillée » sans rechargement :
+      // on demande donc nous-mêmes au navigateur de chercher une nouvelle version.
+      let lastCheck = 0;
+      function checkForUpdate(){
+        const now = Date.now();
+        if(now - lastCheck < 30000) return;
+        lastCheck = now;
+        sw.getRegistration().then(r=>r && r.update()).catch(()=>{});
+      }
+      document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible') checkForUpdate(); });
+      window.addEventListener('pageshow', (e)=>{ if(e.persisted) checkForUpdate(); });
+      window.addEventListener('online', checkForUpdate);
+      setInterval(()=>{ if(document.visibilityState === 'visible') checkForUpdate(); }, 30*60*1000);
+    }
+  }
+  // Réservé à vos tests : ouvrir app.html#test-maj affiche la carte sans rien mémoriser.
   function testMode(){ if(location.hash === '#test-maj'){ current = null; card.classList.add('show'); } }
   window.addEventListener('hashchange', testMode);
   testMode();

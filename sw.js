@@ -1,10 +1,10 @@
 // ================================================================
 //  NUMÉRO DE VERSION — À MODIFIER À CHAQUE MISE À JOUR DU SITE
-//  Exemple : '10.0' devient '10.1'. Ce changement déclenche, chez
+//  Exemple : '11.0' devient '11.1'. Ce changement déclenche, chez
 //  les utilisateurs, le message « ICI CHARTRES évolue ! » (une seule
 //  fois par version). C'est le seul endroit à modifier.
 // ================================================================
-const APP_VERSION = '10.0';
+const APP_VERSION = '11.0';
 
 const CACHE_NAME = 'ici-chartres-shell-v' + APP_VERSION;
 const APP_SHELL = [
@@ -31,6 +31,13 @@ self.addEventListener('install', (event) => {
       .then((clients) => clients.forEach((client) => client.postMessage({ type: 'ICI_UPDATE_AVAILABLE', version: APP_VERSION })))
   );
   self.skipWaiting();
+});
+
+// Une page peut demander la version du service worker actif (2e signal de détection, plus robuste sur iPhone).
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'ICI_GET_VERSION' && event.source) {
+    event.source.postMessage({ type: 'ICI_VERSION', version: APP_VERSION });
+  }
 });
 
 self.addEventListener('activate', (event) => {
