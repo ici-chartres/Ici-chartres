@@ -468,6 +468,21 @@
   .toast{ position:fixed; left:50%; bottom:88px; transform:translate(-50%,10px); background:#123f39; color:#fff; padding:10px 15px; border-radius:999px; font-size:13px; font-weight:700; opacity:0; pointer-events:none; transition:.2s ease; z-index:100; box-shadow:0 8px 24px rgba(0,0,0,.18); }
   .toast.show{ opacity:1; transform:translate(-50%,0); }
 
+  /* ===== Message « nouvelle version disponible » ===== */
+  .update-card{
+    display:none; position:fixed; left:50%; bottom:calc(80px + env(safe-area-inset-bottom, 0px));
+    width:calc(100% - 28px); max-width:432px; transform:translate(-50%,12px); opacity:0;
+    background:var(--color-surface); color:var(--color-text); border:1px solid var(--color-border);
+    border-radius:var(--radius-lg); padding:14px 16px 14px; box-shadow:var(--shadow-lg);
+    font-family:var(--font-body); font-size:12.5px; line-height:1.4; z-index:90;
+  }
+  .update-card.show{ display:block; opacity:1; transform:translate(-50%,0); animation:updateIn .3s ease; }
+  @keyframes updateIn{ from{opacity:0; transform:translate(-50%,12px);} to{opacity:1; transform:translate(-50%,0);} }
+  .update-card .update-title{ font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--color-primary); margin:0 0 6px; }
+  .update-card p{ margin:0 0 5px; color:var(--color-text-secondary); }
+  .update-card p.update-thanks{ color:var(--color-text); font-weight:700; margin:2px 0 10px; }
+  .update-card .btn{ width:100%; }
+
   /* ---------- V1.3 visual polish ---------- */
   .topbar{padding:14px 20px 0; min-height:76px;}
   .brand{width:132px; align-items:flex-start;}
@@ -774,6 +789,14 @@
   </div>
 
   <div class="toast" id="toast"></div>
+  <div class="update-card" id="update-card" role="status" aria-live="polite">
+    <div class="update-title">🎉 ICI CHARTRES évolue&nbsp;!</div>
+    <p>Une nouvelle version de votre guide est disponible.</p>
+    <p>Pas besoin de télécharger quoi que ce soit&nbsp;: votre application se met à jour automatiquement.</p>
+    <p>Fermez puis rouvrez ICI CHARTRES pour profiter des nouveautés.</p>
+    <p class="update-thanks">Merci de faire vivre ICI CHARTRES&nbsp;! ❤️</p>
+    <button class="btn btn-primary small" id="update-ok" type="button">Compris</button>
+  </div>
 
   <!-- ============ TAB BAR ============ -->
   <nav class="tabbar">
@@ -3405,6 +3428,36 @@ const thumbObserver = new MutationObserver(muts=>{
   }
 });
 thumbObserver.observe(document.getElementById('app'), { childList:true, subtree:true });
+
+/* ============================================================
+   MESSAGE « NOUVELLE VERSION DISPONIBLE »
+   Le numéro de version se change UNIQUEMENT dans sw.js (APP_VERSION).
+   Test sans publier : ouvrir app.html#test-maj
+   ============================================================ */
+(function(){
+  const KEY = 'ici-chartres-maj-vue';
+  const card = document.getElementById('update-card');
+  const ok = document.getElementById('update-ok');
+  if(!card || !ok) return;
+  let current = null;
+  function seen(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function remember(v){ try{ localStorage.setItem(KEY, v); }catch(e){} }
+  ok.addEventListener('click', ()=>{ if(current) remember(current); card.classList.remove('show'); });
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.addEventListener('message', (e)=>{
+      const d = e.data;
+      if(!d || d.type !== 'ICI_UPDATE_AVAILABLE') return;
+      const v = String(d.version || '');
+      if(v && seen() === v) return;            // déjà fermé pour cette version
+      current = v || null;
+      card.classList.add('show');
+    });
+    if(location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  }
+  function testMode(){ if(location.hash === '#test-maj'){ current = null; card.classList.add('show'); } }
+  window.addEventListener('hashchange', testMode);
+  testMode();
+})();
 
 /* ============================================================
    INIT

@@ -1,4 +1,12 @@
-const CACHE_NAME = 'ici-chartres-shell-v2';
+// ================================================================
+//  NUMÉRO DE VERSION — À MODIFIER À CHAQUE MISE À JOUR DU SITE
+//  Exemple : '10.0' devient '10.1'. Ce changement déclenche, chez
+//  les utilisateurs, le message « ICI CHARTRES évolue ! » (une seule
+//  fois par version). C'est le seul endroit à modifier.
+// ================================================================
+const APP_VERSION = '10.0';
+
+const CACHE_NAME = 'ici-chartres-shell-v' + APP_VERSION;
 const APP_SHELL = [
   './',
   './index.html',
@@ -12,7 +20,16 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
+  // S'il existe déjà une version active, il s'agit d'une MISE À JOUR (et non d'une première installation).
+  const isUpdate = !!self.registration.active;
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(APP_SHELL))
+      // Mise à jour : prévient les pages ouvertes qu'une nouvelle version vient d'être installée.
+      // Première installation : aucun message.
+      .then(() => (isUpdate ? self.clients.matchAll({ type: 'window', includeUncontrolled: true }) : []))
+      .then((clients) => clients.forEach((client) => client.postMessage({ type: 'ICI_UPDATE_AVAILABLE', version: APP_VERSION })))
+  );
   self.skipWaiting();
 });
 
