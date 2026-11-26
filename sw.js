@@ -1,10 +1,10 @@
 // ================================================================
 //  NUMÉRO DE VERSION — À MODIFIER À CHAQUE MISE À JOUR DU SITE
-//  Exemple : '11.0' devient '11.1'. Ce changement déclenche, chez
+//  Exemple : '12.0' devient '12.1'. Ce changement déclenche, chez
 //  les utilisateurs, le message « ICI CHARTRES évolue ! » (une seule
 //  fois par version). C'est le seul endroit à modifier.
 // ================================================================
-const APP_VERSION = '11.0';
+const APP_VERSION = '12.0';
 
 const CACHE_NAME = 'ici-chartres-shell-v' + APP_VERSION;
 const APP_SHELL = [
