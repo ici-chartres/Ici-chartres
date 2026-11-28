@@ -4,7 +4,7 @@
 //  les utilisateurs, le message « ICI CHARTRES évolue ! » (une seule
 //  fois par version). C'est le seul endroit à modifier.
 // ================================================================
-const APP_VERSION = '12.0';
+const APP_VERSION = '12.1';
 
 const CACHE_NAME = 'ici-chartres-shell-v' + APP_VERSION;
 const APP_SHELL = [
@@ -16,7 +16,9 @@ const APP_SHELL = [
   './icons/icon-512.png?v=2',
   './icons/icon-maskable-512.png?v=2',
   './images/cathedrale-chartres.jpg',
-  './images/logo-ici-pin.png'
+  './images/logo-ici-pin.png',
+  './images/capture-accueil-app.webp',
+  './images/capture-contenu-app.webp'
 ];
 
 self.addEventListener('install', (event) => {

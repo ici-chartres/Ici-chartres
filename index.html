@@ -243,6 +243,23 @@
       .hero{min-height:0;padding:42px 0 48px}.hero::before{background:linear-gradient(180deg,rgba(255,253,249,.91) 0%,rgba(255,253,249,.72) 48%,rgba(255,253,249,.28) 100%)}.hero-photo{object-position:center}.hero-inner{width:min(100% - 32px,560px);grid-template-columns:1fr;gap:20px;min-height:0}.hero-copy{text-align:center}.lead{font-size:16px;margin:auto}.actions{justify-content:center}.local-note{justify-content:center}.visual{min-height:460px}.phone{margin-left:0;transform:rotate(3deg) scale(.9)}.float-tag.one{right:2%}.float-tag.two{left:1%}
       .section{padding:52px 0}.features{grid-template-columns:1fr}.feature{padding:21px}.install{padding:28px 23px;display:block;text-align:center}.install .btn{margin-top:20px}.foot-inner{align-items:flex-start;flex-direction:column}
     }
+    /* ---- Captures réelles de l'application dans des cadres de smartphone ---- */
+    .visual{min-height:0;padding:50px 0}
+    .shots{position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
+    .shot{margin:0;flex:none}
+    .shot-frame{background:#1e2924;padding:8px;border-radius:38px;box-shadow:0 25px 65px #263d3430,inset 0 0 0 1px #3a4a43}
+    .shot-frame picture{display:block}
+    .shot-frame img{display:block;width:100%;height:auto;aspect-ratio:1170/2532;border-radius:30px;background:var(--cream)}
+    .shot-main{position:relative;z-index:2;width:clamp(150px,44vw,236px);transform:rotate(4deg)}
+    .shot-second{position:relative;z-index:1;width:clamp(136px,40vw,212px);margin-right:-30px;margin-top:64px;transform:rotate(-5deg)}
+    .visual .float-tag.one{top:0;right:0}
+    .visual .float-tag.two{bottom:0;left:0}
+    @media(max-width:760px){
+      .visual{padding:46px 0 52px}
+      .shot-frame{padding:6px;border-radius:30px}.shot-frame img{border-radius:24px}
+      .shot-second{margin-right:-22px;margin-top:44px}
+      .visual .float-tag{font-size:11px;padding:10px 12px}
+    }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
   </style>
 </head>
@@ -280,19 +297,23 @@
       </div>
       <div class="visual" aria-label="Aperçu de l’application ICI CHARTRES">
         <div class="blob"></div>
-        <div class="phone">
-          <div class="phone-top"><div class="notch"></div></div>
-          <div class="phone-screen">
-            <div class="mini-brand">ICI CHARTRES</div><div class="mini-sub">TOUT CE QUI SE PASSE ICI</div>
-            <div class="mini-greeting">Bonjour,<br><span>Chartres !</span></div>
-            <div class="mini-search">⌕ &nbsp; Un lieu, une sortie, une envie…</div>
-            <div class="mini-pills"><span>À découvrir</span><span>Sortir</span><span>Autour de moi</span></div>
-            <div class="mini-section">À découvrir près de vous</div>
-            <div class="mini-card"><div class="mini-thumb"></div><div><b>Les bonnes adresses</b><small>Des lieux à explorer</small></div></div>
-            <div class="mini-card"><div class="mini-thumb two"></div><div><b>Les idées de sortie</b><small>Les rendez-vous du coin</small></div></div>
-            <div class="mini-section">Cette semaine</div>
-            <div class="mini-card"><div class="mini-thumb two"></div><div><b>Les événements</b><small>À ne pas manquer</small></div></div>
-          </div>
+        <div class="shots">
+          <figure class="shot shot-second">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="images/capture-contenu-app.webp" type="image/webp">
+                <img src="images/capture-contenu-app.png" width="1170" height="2532" loading="lazy" decoding="async" alt="Capture d’écran de l’application ICI CHARTRES : sections « En ce moment » et « Les Sélections ICI »">
+              </picture>
+            </div>
+          </figure>
+          <figure class="shot shot-main">
+            <div class="shot-frame">
+              <picture>
+                <source srcset="images/capture-accueil-app.webp" type="image/webp">
+                <img src="images/capture-accueil-app.png" width="1170" height="2532" decoding="async" alt="Capture d’écran de l’application ICI CHARTRES : page d’accueil « Qu’est-ce qu’on fait aujourd’hui à Chartres ? » avec les catégories Manger, Sortir, Culture et Activités">
+              </picture>
+            </div>
+          </figure>
         </div>
         <div class="float-tag one">📍 Près de chez vous</div>
         <div class="float-tag two">♥ Vos favoris, toujours à portée</div>
